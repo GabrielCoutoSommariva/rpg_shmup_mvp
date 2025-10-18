@@ -1,0 +1,23 @@
+{
+  "ring_slow": {
+    "type": "ring",
+    "count": 12,
+    "rpm": 10,
+    "speed": 120
+  },
+  "spread_3": {
+    "type": "spread",
+    "count": 3,
+    "angle": 20,
+    "speed": 220
+  },
+  "spiral": {
+    "type": "spiral",
+    "speed": 160,
+    "dtheta": 6
+  },
+  "straight": {
+    "type": "straight",
+    "speed": 200
+  }
+}

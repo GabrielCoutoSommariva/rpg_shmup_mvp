@@ -1,0 +1,34 @@
+{
+  "biome_1": [
+    {
+      "t": 0,
+      "spawn": [
+        {
+          "enemy": "ghastling",
+          "n": 6,
+          "pattern": "straight"
+        }
+      ]
+    },
+    {
+      "t": 25,
+      "spawn": [
+        {
+          "enemy": "spitter",
+          "n": 4,
+          "pattern": "spread_3"
+        }
+      ]
+    },
+    {
+      "t": 60,
+      "spawn": [
+        {
+          "enemy": "spitter",
+          "n": 6,
+          "pattern": "ring_slow"
+        }
+      ]
+    }
+  ]
+}

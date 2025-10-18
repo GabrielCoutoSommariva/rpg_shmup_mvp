@@ -1,0 +1,18 @@
+{
+  "npc_guard": [
+    {
+      "text": "A n\u00e9voa voltou... fique atento."
+    },
+    {
+      "choice": [
+        {
+          "text": "O que aconteceu?",
+          "goto": "guard_lore"
+        },
+        {
+          "text": "At\u00e9 mais."
+        }
+      ]
+    }
+  ]
+}

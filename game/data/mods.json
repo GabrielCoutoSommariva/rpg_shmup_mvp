@@ -1,0 +1,20 @@
+{
+  "rapid_fire": {
+    "slot": "barrel",
+    "cadence": "+20%",
+    "heat": "+10%"
+  },
+  "spread": {
+    "slot": "barrel",
+    "pellets": "+2",
+    "dano": "-10%"
+  },
+  "pierce": {
+    "slot": "ammo",
+    "pierce": 1
+  },
+  "ricochet": {
+    "slot": "ammo",
+    "bounces": 1
+  }
+}

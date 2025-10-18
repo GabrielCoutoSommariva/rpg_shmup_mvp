@@ -1,0 +1,8 @@
+{
+  "vital_rune": {
+    "hp_max": "+5%"
+  },
+  "edge_rune": {
+    "dano_base": "+5%"
+  }
+}
