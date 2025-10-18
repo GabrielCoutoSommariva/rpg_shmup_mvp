@@ -1,32 +1,30 @@
-# game/engine/sheet_loader.py (Arcade 3.x)
-import os, json, arcade
+# game/engine/sheet_loader.py
+import arcade
 
-def load_grid_textures(png_path: str, json_path: str):
+def load_grid_textures(png_path: str, _json_path: str = None,
+                       frame_w: int = 32, frame_h: int = 32,
+                       cols: int = 4, rows: int = 3):
     """
-    Retorna um dicionário com listas de textures por direção.
-    Suposição do JSON: grid 4 colunas × 3 linhas; ordem das linhas:
-      0=sul, 1=leste, 2=oeste (ajuste se seu sheet tiver outra ordem).
+    Carrega uma spritesheet em grade (cols × rows) e retorna um dicionário
+    com listas de textures por direção. Compatível com Arcade 3.x.
+    A assinatura mantém o 2º argumento (json) por compatibilidade, mas é ignorado.
     """
-    meta = json.load(open(json_path, "r", encoding="utf-8"))
-    w, h = meta["normalized_size"]
-    cols = meta["grid"]["cols"]
-    rows = meta["grid"]["rows"]
+    try:
+        # Arcade 3.x costuma aceitar (file, w, h, cols, rows)
+        textures = arcade.load_spritesheet(png_path, frame_w, frame_h, cols, rows)
+    except TypeError:
+        # Fallback para assinaturas antigas: (file, w, h, cols, count)
+        textures = arcade.load_spritesheet(png_path, frame_w, frame_h, cols, cols * rows)
 
-    def tex(ix: int):
-        fr = meta["frames"][f"frame_{ix}"]
-        return arcade.load_texture(
-            png_path, x=fr["x"], y=fr["y"], width=w, height=h
-        )
-
-    # fatia por linhas
-    south = [tex(i) for i in range(0, 4)]
-    east  = [tex(i) for i in range(4, 8)]
-    west  = [tex(i) for i in range(8, 12)]
-    # se você tiver a linha “north”, troque o sheet para 4×4; por enquanto usamos 3 linhas.
+    # Mapeamento por linha (ajuste se sua ordem for diferente)
+    south = textures[0:4]    # linha 0
+    east  = textures[4:8]    # linha 1
+    west  = textures[8:12]   # linha 2
+    # Se adicionar "north" (4ª linha), inclua: north = textures[12:16]
 
     return {
-        "south": south,  # [0..3]
+        "south": south,
         "east":  east,
         "west":  west,
-        # opcional: "north": north
-    }, (w, h)
+        # "north": north,  # quando tiver a 4ª linha
+    }, (frame_w, frame_h)
